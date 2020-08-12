@@ -1,0 +1,44 @@
+- url_for
+    url을 생성해준다.
+    [
+        url_for('login', next='/') => /login?next=/ ,
+        url_for('profile', username='John Doe')
+    ]
+
+- render_template
+    ㄴ 템플릿을 보여준다
+    ㄴ flask는 templates 폴더에서 템플릿을 찾는다.
+    ㄴ return render_template("hello.html", name=name)   # 장고처럼 인자를 넘겨준다.
+                                                         # templates/hello.html
+    ㄴ 템플릿 문법은 그때그때 찾아볼 것
+
+
+- 정적파일
+    ㄴ static 폴더를 만들면 /static위치에서 정적 파일을 제공한다.
+    ㄴ url을 얻으려면 url_for('static', filename='style.css')
+
+- request.args.get('key', '')
+    ㄴ 위와같이 json에서 data를 받아올 수 있다,
+
+- request.form['key']
+    ㄴ 위와같이 formdata에서 data를 받아올 수 있다.
+
+- 파일전송
+    ㄴ 헤더에 enctype="multipart/form-data"를 해야한다.
+
+- secure_filename()
+    ㄴ 서버에 저장되는 파일명을 클라이언트에서의 파일명을 그대로 사용하는 방법 ( 변조없는 신뢰가능한값이다. )
+       f = request.files['the_file']
+       f.save('/var/www/uploads/' + secure_filename(f.filename))
+
+- redirect, abort
+    ㄴ리다이렉트, 에러
+
+- make_response
+    ㄴ 반환되는 표현 래핑
+    ㄴ resp = make_response(render_template('error.html'), 404)
+       resp.headers['X-Something'] = 'A value'
+       return resp
+
+
+
